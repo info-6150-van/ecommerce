@@ -87,7 +87,10 @@ module.exports = {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+  		},
+		gridTemplateColumns: {
+			'nav': '100px minmax(900px, 1fr) 100px',
+		}
   	}
   },
   plugins: [require("tailwindcss-animate")],

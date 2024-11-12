@@ -27,8 +27,8 @@ export const Route = createRootRouteWithContext<RouterContext>()({
           <Link to="/categories/$category" params={{category: "men"}} usage="nav">
             Men
           </Link>
-          <Link to="/categories/$category" params={{category: "woman"}} usage="nav">
-            woman
+          <Link to="/categories/$category" params={{category: "women"}} usage="nav">
+            women
           </Link>
         </section>
         <section className='flex items-center justify-end gap-4'>

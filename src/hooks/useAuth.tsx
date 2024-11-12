@@ -1,9 +1,11 @@
 import { getStoredUser, setStoredUser } from "@/lib/auth"
 import React from "react"
 
+
+
 export interface AuthContext {
     isAuthenticated: boolean
-    login: (username: string) => Promise<void>
+    login: (email: string, password: string) => Promise<void>
     logout: () => Promise<void>
     user: string | null
 }
@@ -11,6 +13,7 @@ export interface AuthContext {
 const AuthContext = React.createContext<AuthContext | null>(null)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+
     const [user, setUser] = React.useState<string | null>(getStoredUser())
     const isAuthenticated = !!user
 
@@ -19,9 +22,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setUser(null)
     }, [])
 
-    const login = React.useCallback(async (username: string) => {
-        setStoredUser(username)
-        setUser(username)
+    const login = React.useCallback(async (email: string, password: string) => {
+        setStoredUser(email + ":"+ password)
+        setUser(email + ":"+ password)
     }, [])
 
     React.useEffect(() => {

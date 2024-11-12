@@ -31,6 +31,7 @@ const fallback = '/' as const
 
 interface FormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement
+  password: HTMLInputElement
 }
 interface LoginFormElementProps extends HTMLFormElement {
   readonly elements: FormElements
@@ -44,7 +45,10 @@ function LoginPage() {
 
   async function onSubmit(event: React.FormEvent<LoginFormElementProps>) {
     event.preventDefault()
-    await login(event.currentTarget.elements.email.value)
+
+    await login(event.currentTarget.elements.email.value, 
+      event.currentTarget.elements.password.value
+    )
 
     setIsLoading(true)
 
@@ -71,6 +75,20 @@ function LoginPage() {
                 type="email"
                 autoCapitalize="none"
                 autoComplete="email"
+                autoCorrect="off"
+                disabled={isLoading}
+              />
+            </div>
+            <div className="grid gap-1">
+              <Label className="sr-only" htmlFor="password">
+                Password
+              </Label>
+              <Input
+                id="password"
+                placeholder="name@example.com"
+                type="password"
+                autoCapitalize="none"
+                autoComplete="none"
                 autoCorrect="off"
                 disabled={isLoading}
               />
